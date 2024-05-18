@@ -345,7 +345,7 @@
     <canvas id="myCanvas"></canvas>
     <h1 class="text-5xl font-extrabold text-gray-100 mb-8 text-shadow fade-in" id="overlay">SevTech: Ages (KerzenEdition)</h1>
     <button
-      class="bg-red-500 text-white font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:bg-red-700 hover:scale-110 hover:rotate hover:shake hover:wobble hover:swing hover:bounce-in" id="overlay">
+      class="bg-red-500 text-white font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:bg-red-700 hover:scale-110 hover:rotate hover:shake hover:wobble hover:swing hover:bounce-in" id="overlay"onclick="window.location.href='/SevTech: Ages-3.2.3_Kerz.zip';">
       Let's Play!
     </button>
   </div>
@@ -558,23 +558,23 @@
     `);
 
     const splatShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision highp float;
-        precision mediump sampler2D;
+      precision highp float;
+      precision mediump sampler2D;
 
-        varying vec2 vUv;
-        uniform sampler2D uTarget;
-        uniform float aspectRatio;
-        uniform vec3 color;
-        uniform vec2 point;
-        uniform float radius;
+      varying vec2 vUv;
+      uniform sampler2D uTarget;
+      uniform float aspectRatio;
+      uniform vec3 color;
+      uniform vec2 point;
+      uniform float radius;
 
-        void main () {
-            vec2 p = vUv - point.xy;
-            p.x *= aspectRatio;
-            vec3 splat = exp(-dot(p, p) / radius) * color;
-            vec3 base = texture2D(uTarget, vUv).xyz;
-            gl_FragColor = vec4(base + splat, 1.0);
-        }
+      void main () {
+        vec2 p = vUv - point.xy;
+        p.x *= aspectRatio;
+        vec3 splat = exp(-dot(p, p) / radius) * color;
+        vec3 base = texture2D(uTarget, vUv).xyz;
+        gl_FragColor = vec4(base + splat, 1.0);
+      }
     `);
 
     const advectionManualFilteringShader = compileShader(gl.FRAGMENT_SHADER, `
